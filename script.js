@@ -6,27 +6,35 @@ function writePassword() {
   passwordText.value = password;
 
 }
+
+console.log(securityCodeLength)
+if(isNaN(securityCodeLength) || securityCodeLength <=8) {
+  alert("Password needs to be at least 8 characters, please meet the password requirements");
+  } 
+  return generatePassword();
+
+
+
 const securityCodeLength = parseInt(prompt("How long would you like your password to be?"));
 const inclUpper = confirm("Would you like your password to include uppercase characters?");
 const inclLower = confirm("Would you like your password to include lowercase characters?");
 const inclSymbol = confirm("Would you like your password to include symbols?");
 const inclNumber = confirm("Would you like your password to include numbers?");
+console.log(userInput, securityCodeLength, inclUpper, inclLower, inclNumber, inclSymbol);
+if (!inclLower && !inclUpper && !inclNumber && !inclSymbol) {
+  alert("You must choose at least one character type")
+  return generatePassword();
+
+
+}
+
 // Assignment code here
-const lowerCase = "a b c d e f g h i j k l m n o p q r s t u v w x y z"
-const upperCase = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
-const numbers = "1 2 3 4 5 6 7 8 9"
-const symbols = "! @ # $ % ^ & * ( ) - _ = + ~ ` ? < >"
 
-symbols.split (" ")
-numbers.split (" ")
-upperCase.split (" ")
-lowerCase.split (" ")
+const lowerCase = "abcdefghijklmnopqrstuvwxyz"
+const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const numbers = "123456789"
+const symbols = "!@#$%^&*()-_=+~`?<>"
 
-
-
-if(isNaN(securityCodeLength) || securityCodeLength <=8) {
-  alert("Password needs to be at least 8 characters, please meet the password requirements");
-  } else
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -39,7 +47,7 @@ let password ='';
 
 
 for (let i=0; i<length; i++) {
-  const randomness = Math.floor(math.random() * passwordcombo.length);
+  var randomness = Math.floor(math.random() * passwordcombo.length);
   password += passwordcombo[randomness];
 
 
