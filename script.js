@@ -1,29 +1,37 @@
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
+generateBtn.addEventListener("click", writePassword);
+
+function generatePassword(){
+  var password = "";
+  const securityCodeLength = parseInt(prompt("How long would you like your password to be?"));
 console.log(securityCodeLength)
 if(isNaN(securityCodeLength) || securityCodeLength <=8) {
   alert("Password needs to be at least 8 characters, please meet the password requirements");
-  } 
-  return generatePassword();
+  return "";
+ 
+} 
+
+  
 
 
 
-const securityCodeLength = parseInt(prompt("How long would you like your password to be?"));
 const inclUpper = confirm("Would you like your password to include uppercase characters?");
 const inclLower = confirm("Would you like your password to include lowercase characters?");
 const inclSymbol = confirm("Would you like your password to include symbols?");
 const inclNumber = confirm("Would you like your password to include numbers?");
-console.log(userInput, securityCodeLength, inclUpper, inclLower, inclNumber, inclSymbol);
+console.log(securityCodeLength, inclUpper, inclLower, inclNumber, inclSymbol);
 if (!inclLower && !inclUpper && !inclNumber && !inclSymbol) {
   alert("You must choose at least one character type")
-  return generatePassword();
+  return "";
 
 
 }
@@ -35,19 +43,18 @@ const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const numbers = "123456789"
 const symbols = "!@#$%^&*()-_=+~`?<>"
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+
 
 let passwordcombo = lowerCase;
-if (includeupperCase) passwordcombo += upperCase;
-if (includenumbers) passwordcombo += numbers;
-if (includesymbols) passwordcombo += symbols;
-
-let password ='';
+if (inclUpper) passwordcombo += upperCase;
+if (inclNumber) passwordcombo += numbers;
+if (inclNumber) passwordcombo += symbols;
 
 
-for (let i=0; i<length; i++) {
-  var randomness = Math.floor(math.random() * passwordcombo.length);
+
+
+for (let i=0; i<securityCodeLength; i++) {
+  var randomness = Math.floor(Math.random() * passwordcombo.length);
   password += passwordcombo[randomness];
 
 
@@ -55,5 +62,6 @@ for (let i=0; i<length; i++) {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+return password; 
+}
 
